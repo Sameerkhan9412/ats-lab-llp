@@ -23,16 +23,16 @@ type User = {
 };
 
 const ptpLinks = [
-  { name: "PTP Introduction", link: "ptp" },
-  { name: "PT Calender", link: "#" },
-  { name: "Instruction Sheet", link: "#" },
+  { name: "PTP Introduction", link: "/ptp" },
+  { name: "PT Calender", link: "/calender" },
+  { name: "Instruction Sheet", link: "/sheet" },
   { name: "Registration", link: "/signup" },
 ];
 
 const RMPLinks = [
-  { name: "RMP Introduction", link: "rmp" },
-  { name: "IP Reference Substance (IPRS)", link: "#" },
-  { name: "IP Reference Substance (IPRS)", link: "#" },
+  { name: "RMP Introduction", link: "/rmp" },
+  { name: "IP Reference Substance (IPRS)", link:"/iprs" },
+  { name: "IP Reference Substance (IPRS)", link: "/iprs" },
 ];
 export default function Navbar() {
   const router = useRouter();
@@ -153,13 +153,13 @@ export default function Navbar() {
               <>
                 <Button
                   variant="outline"
-                  className="border-blue-600 text-blue-600"
+                  className="border-blue-600 text-blue-600 cursor-pointer"
                   onClick={() => router.push("/login")}
                 >
                   Login
                 </Button>
                 <Button
-                  className="bg-blue-600 text-white"
+                  className="bg-blue-600 text-white cursor-pointer"
                   onClick={() => router.push("/signup")}
                 >
                   Sign Up
@@ -170,11 +170,12 @@ export default function Navbar() {
                 <Button
                   variant="outline"
                   onClick={() => router.push("/dashboard/profile")}
+                  className="bg-blue-600 text-white cursor-pointer"
                 >
                   Profile
                 </Button>
                 <Button
-                  className="bg-red-600 text-white hover:bg-red-700"
+                  className="bg-red-600 text-white hover:bg-red-700 cursor-pointer"
                   onClick={logout}
                 >
                   Logout

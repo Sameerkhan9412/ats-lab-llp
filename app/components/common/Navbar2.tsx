@@ -15,16 +15,16 @@ import { Button } from "@/components/ui/button";
 import logo from "../../assets/logo.jpg";
 import Image from "next/image";
 const ptpLinks = [
-  { name: "PTP Introduction", link: "ptp" },
-  { name: "PT Calender", link: "#" },
-  { name: "Instruction Sheet", link: "#" },
+  { name: "PTP Introduction", link: "/ptp" },
+  { name: "PT Calender", link: "/calender" },
+  { name: "Instruction Sheet", link: "/sheet" },
   { name: "Registration", link: "/signup" },
 ];
 
 const RMPLinks = [
-  { name: "RMP Introduction", link: "rmp" },
-  { name: "IP Reference Substance (IPRS)", link: "#" },
-  { name: "IP Reference Substance (IPRS)", link: "#" },
+  { name: "RMP Introduction", link: "/rmp" },
+  { name: "IP Reference Substance (IPRS)", link:"/iprs" },
+  { name: "IP Reference Substance (IPRS)", link: "/iprs" },
 ];
 export default function Navbar() {
   return (
