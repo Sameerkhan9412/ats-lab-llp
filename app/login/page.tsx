@@ -50,6 +50,7 @@ export default function LoginPage() {
 
     // ✅ login success
     router.push("/dashboard/profile");
+    router.refresh()
     toast.success("login successfully")
   };
   return (

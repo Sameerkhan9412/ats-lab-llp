@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
   NavigationMenu,
@@ -36,6 +36,7 @@ const RMPLinks = [
 ];
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -44,10 +45,10 @@ export default function Navbar() {
         try {
           const res = await fetch("/api/auth/me", {
             credentials: "include",
+            cache: "no-store"
           });
           const data = await res.json();
-          console.log("responss",data)
-          setUser(data.user);
+         setUser(data.user ?? null);
         } catch {
           setUser(null);
         } finally {
@@ -56,7 +57,7 @@ export default function Navbar() {
       };
 
       fetchUser();
-    }, []);
+    }, [pathname]);
 
   const logout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
