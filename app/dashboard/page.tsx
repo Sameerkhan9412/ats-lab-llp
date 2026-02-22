@@ -1,10 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function DashboardHome() {
   const [companyName, setCompanyName] = useState<string>("");
-
+  const router=useRouter();
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -23,6 +24,15 @@ export default function DashboardHome() {
 
     fetchProfile();
   }, []);
+
+  const handleAddPts=()=>{
+    console.log("first")
+    router.push("/dashboard/admin/pt-programs")
+  }
+  const handleBuyPT=()=>{
+    console.log("first")
+    router.push("/dashboard/pt-programs")
+  }
 
   return (
     <div className="space-y-6">
@@ -53,11 +63,14 @@ export default function DashboardHome() {
 
       {/* ACTION BUTTONS */}
       <div className="flex flex-wrap gap-3">
-        <button className="px-5 py-2 rounded-lg bg-cyan-500 text-black font-semibold">
+        <button className="px-5 py-2 rounded-lg bg-cyan-500 text-black font-semibold" onClick={()=>handleBuyPT()}>
           Buy New PT
         </button>
         <button className="px-5 py-2 rounded-lg bg-green-500 text-black font-semibold">
           Online Submission
+        </button>
+        <button className="px-5 py-2 rounded-lg bg-green-500 text-black font-semibold" onClick={()=>handleAddPts()}>
+          Add PTs
         </button>
         <button className="px-5 py-2 rounded-lg bg-yellow-400 text-black font-semibold">
           My Downloads
