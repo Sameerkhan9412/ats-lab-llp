@@ -32,19 +32,27 @@ export default function PTProgramsListing() {
     setCartCount(data.length || 0);
   };
 
-  const addToCart = async (program: PTProgram) => {
-    await fetch("/api/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        programId: program._id,
-        programName: program.programName,
-        fees: program.fees,
-      }),
-    });
+ const addToCart = async (program: PTProgram) => {
+  const res = await fetch("/api/cart", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      programId: program._id,
+      programName: program.programName,
+      fees: program.fees,
+    }),
+  });
 
-    fetchCartCount();
-  };
+  const data = await res.json();
+
+  if (!res.ok) {
+    alert(data.message); // Already added message
+    return;
+  }
+
+  alert("Added to cart successfully");
+  fetchCartCount();
+};
 
   return (
     <div className="p-6 text-white">

@@ -10,6 +10,7 @@ const links = [
   { name: "My Enquiry", href: "/dashboard/enquiry" },
   { name: "Raise Complaints", href: "/dashboard/complaints" },
   { name: "Add Locations", href: "/dashboard/locations" },
+  { name: "Payment History", href: "/dashboard/payment-history" },
 ];
 
 export default function SidebarClient({
