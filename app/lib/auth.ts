@@ -5,21 +5,18 @@ import { connectDB } from "./db";
 import User from "@/app/models/User";
 import { NextRequest } from "next/server";
 
-export async function getUserFromToken(
-  req: NextRequest
-) {
+export async function getUserFromToken(req: NextRequest) {
   try {
     await connectDB();
 
     const token = req.cookies.get("token")?.value;
-    console.log("i am token",token)
+    console.log("i am token", token);
     if (!token) return null;
 
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET!
-    ) as { id: string };
-    console.log("decodeddd",decoded)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
+      userId: string;
+    };
+    console.log("decodeddd", decoded);
 
     const user = await User.findById(decoded?.userId).select("-password");
 

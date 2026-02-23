@@ -31,7 +31,7 @@ const About = () => {
             >
               <Image
                 src={aboutImg}
-                alt="ATS Laboratories facility"
+                alt="ATAS Laboratories facility"
                 width={600}
                 height={450}
                 className="object-cover"
@@ -68,13 +68,13 @@ const About = () => {
             <h2 className="text-3xl md:text-5xl font-extrabold leading-tight text-slate-800 mb-6">
               About{" "}
               <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                ATS Laboratories LLP
+                ATAS Laboratories LLP
               </span>
             </h2>
 
             {/* Text */}
             <p className="text-slate-600 mb-5 leading-relaxed text-base md:text-lg">
-              ATS Laboratories LLP plays a vital role in providing confidence to
+              ATAS Laboratories LLP plays a vital role in providing confidence to
               laboratories in their testing and measurement results. We assess
               the ability of laboratories to competently perform specific tests
               and measurements.

@@ -11,9 +11,9 @@ export async function sendOtpMail(email: string, otp: string) {
   });
 
   await transporter.sendMail({
-    from: `"ATS Laboratories LLP" <${process.env.EMAIL_USER}>`,
+    from: `"ATAS Laboratories LLP" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: "Verify Your Email | ATS Laboratories LLP",
+    subject: "Verify Your Email | ATAS Laboratories LLP",
     html: `
       <div style="
         font-family: Arial, Helvetica, sans-serif;
@@ -41,7 +41,7 @@ export async function sendOtpMail(email: string, otp: string) {
               margin: 0;
               letter-spacing: 0.5px;
             ">
-              ATS Laboratories LLP
+              ATAS Laboratories LLP
             </h1>
             <p style="
               color: #e0f2fe;
@@ -68,7 +68,7 @@ export async function sendOtpMail(email: string, otp: string) {
               line-height: 1.6;
               margin-bottom: 20px;
             ">
-              Thank you for registering with <strong>ATS Laboratories LLP</strong>.
+              Thank you for registering with <strong>ATAS Laboratories LLP</strong>.
               Please use the verification code below to complete your signup.
             </p>
 
@@ -128,7 +128,7 @@ export async function sendOtpMail(email: string, otp: string) {
               color: #64748b;
               margin: 0;
             ">
-              © ${new Date().getFullYear()} ATS Laboratories LLP. All rights reserved.
+              © ${new Date().getFullYear()} ATAS Laboratories LLP. All rights reserved.
             </p>
           </div>
 

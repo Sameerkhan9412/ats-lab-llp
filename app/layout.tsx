@@ -7,9 +7,9 @@ import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "ATS Laboratories LLP | Proficiency Testing & Reference Materials",
+  title: "ATAS Laboratories LLP | Proficiency Testing & Reference Materials",
   description:
-    "ATS Laboratories LLP is a secure digital platform for laboratories to manage proficiency testing programs, reference materials, online submissions, compliance tracking, and report downloads. Designed for NABL and ISO accredited laboratories.",
+    "ATAS Laboratories LLP is a secure digital platform for laboratories to manage proficiency testing programs, reference materials, online submissions, compliance tracking, and report downloads. Designed for NABL and ISO accredited laboratories.",
     icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -41,10 +41,8 @@ export default function RootLayout({
   />
       </head>
       <body className="">
-        <Navbar />
-        <main className="pt-16">{children}</main>
-        <Footer />
-         <Toaster />
+        {children}
+        <Toaster />
       </body>
     </html>
   );

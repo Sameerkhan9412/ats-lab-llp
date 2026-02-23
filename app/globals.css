@@ -2,6 +2,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
 
+/* Hide scrollbar for sidebar */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
+/* Smooth focus rings */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.3);
+  border-radius: 8px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 

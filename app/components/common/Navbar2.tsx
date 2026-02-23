@@ -34,7 +34,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <span className=" font-bold text-blue-500 flex items-center gap-2 md:text-2xl">
             <Image src={logo} className="scale-150 w-8 mx-2" alt="logo" />
-            ATS Laboratories LLP
+            ATAS Laboratories LLP
           </span>
         </Link>
 

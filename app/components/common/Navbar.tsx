@@ -70,9 +70,9 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <Image src={logo} alt="ATS Logo" className="w-9 h-9" />
+          <Image src={logo} alt="ATAS Logo" className="w-9 h-9" />
           <span className="text-lg md:text-xl font-extrabold text-blue-600">
-            ATS Laboratories LLP
+            ATAS Laboratories LLP
           </span>
         </Link>
 

@@ -11,7 +11,7 @@ export default function ContactPage() {
         <div className="absolute inset-0">
           <Image
             src={img}
-            alt="Contact ATS Laboratories"
+            alt="Contact ATAS Laboratories"
             fill
             className="object-cover opacity-20"
             priority
@@ -25,7 +25,7 @@ export default function ContactPage() {
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-5">
-            Get in Touch with ATS Laboratories LLP
+            Get in Touch with ATAS Laboratories LLP
           </h1>
 
           <p className="text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -40,7 +40,7 @@ export default function ContactPage() {
         {/* CONTACT INFO */}
         <div className="space-y-6">
           <InfoCard title="Office Address">
-            ATS Laboratories LLP <br />
+            ATAS Laboratories LLP <br />
             Khasra No 136, Viklang Colony, Nandgram, Ghaziabad <br />
             U.P, India
           </InfoCard>

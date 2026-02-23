@@ -14,9 +14,9 @@ const Footer = () => {
           {/* BRAND */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <Image src={logo} alt="ATS Logo" className="w-9 h-9" />
+              <Image src={logo} alt="ATAS Logo" className="w-9 h-9" />
               <span className="text-lg font-extrabold text-blue-600">
-                ATS Laboratories LLP
+                ATAS Laboratories LLP
               </span>
             </div>
 
@@ -128,7 +128,7 @@ const Footer = () => {
         {/* BOTTOM BAR */}
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-xs">
-            © {new Date().getFullYear()} ATS Laboratories LLP. All rights reserved.
+            © {new Date().getFullYear()} ATAS Laboratories LLP. All rights reserved.
           </p>
 
           <div className="flex gap-6">

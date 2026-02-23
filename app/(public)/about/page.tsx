@@ -12,7 +12,7 @@ export default function AboutPage() {
         <div className="absolute inset-0">
           <Image
             src={img}
-            alt="ATS Laboratories"
+            alt="ATAS Laboratories"
             fill
             className="object-cover opacity-20"
             priority
@@ -26,7 +26,7 @@ export default function AboutPage() {
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-6">
-            ATS Laboratories LLP
+            ATAS Laboratories LLP
           </h1>
 
           <p className="text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -42,7 +42,7 @@ export default function AboutPage() {
         {/* WHO WE ARE */}
         <Card title="Who We Are">
           <p>
-            <strong className="text-cyan-400">ATS Laboratories LLP</strong> is a
+            <strong className="text-cyan-400">ATAS Laboratories LLP</strong> is a
             professionally managed laboratory organization committed to
             supporting testing and calibration laboratories across India.
             We help laboratories maintain compliance, accuracy, and confidence
@@ -73,7 +73,7 @@ export default function AboutPage() {
         </Card>
 
         {/* WHY CHOOSE US */}
-        <Card title="Why Choose ATS Laboratories">
+        <Card title="Why Choose ATAS Laboratories">
           <div className="grid sm:grid-cols-2 gap-6 text-slate-300">
             <Feature
               title="Accuracy & Reliability"
