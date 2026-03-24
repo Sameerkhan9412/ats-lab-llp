@@ -87,7 +87,7 @@ export const generateInvoice = async (order: any) => {
       order.items.forEach((item: any, index: number) => {
         doc
           .fontSize(10)
-          .text(index + 1, 40, y)
+          .text(String(index + 1), 40, y)
           .text(item.programName, 90, y, { width: 240 })
           .text(item.quantity || 1, 350, y)
           .text(`₹${item.fees}`, 400, y)
