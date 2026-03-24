@@ -69,7 +69,14 @@ const adminLinks = [
   },
   {
     name: "PT Programs",
-    href: "/dashboard/programs",
+    // href: "/dashboard/programs",
+    href:"/dashboard/admin/pt-programs",
+    icon: ClipboardList,
+  },
+  {
+    name: "Client Enquiries",
+    // href: "/dashboard/programs",
+    href:"/dashboard/admin/enquiries",
     icon: ClipboardList,
   },
   {
