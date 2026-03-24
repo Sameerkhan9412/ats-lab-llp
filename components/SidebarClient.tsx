@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { useState } from "react";
 import {
   Home,
+  SquarePercent,
   UserCog,
   HelpCircle,
   AlertTriangle,
@@ -34,6 +35,7 @@ import logo from "@/app/assets/logo.jpg";
 // User navigation links
 const userLinks = [
   { name: "Home", href: "/dashboard", icon: Home },
+  { name: "Buy PT", href: "/dashboard/pt-programs", icon:  SquarePercent},
   { name: "Update Profile", href: "/dashboard/profile", icon: UserCog },
   { name: "My Enquiry", href: "/dashboard/enquiry", icon: HelpCircle },
   { name: "Download Forms", href: "/dashboard/forms", icon: FileText },

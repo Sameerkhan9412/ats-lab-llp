@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
+  console.log('i am token',token);
 
   if (!token) {
     return NextResponse.redirect(new URL("/login", req.url));
@@ -15,6 +16,7 @@ export function middleware(req: NextRequest) {
 
     if (req.nextUrl.pathname.startsWith("/admin")) {
       if (decoded.role !== "admin") {
+        console.log("hi hi hi")
         return NextResponse.redirect(new URL("/dashboard", req.url));
       }
     }

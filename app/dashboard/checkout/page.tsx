@@ -432,7 +432,7 @@ export default function CheckoutPage() {
           const result = await verifyRes.json();
           if (result.success) {
             await fetch("/api/cart/clear", { method: "DELETE" });
-            window.location.href = "/dashboard/order-success";
+            window.location.href = "/dashboard/my-orders";
           } else {
             showToast("Payment verification failed", "error");
           }

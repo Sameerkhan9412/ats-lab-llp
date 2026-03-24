@@ -187,14 +187,6 @@ export default function DashboardHome() {
           Online Submission
         </button> */}
 
-        <button
-          onClick={handleAddPts}
-          className="group flex items-center gap-2.5 px-6 py-3 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20 font-semibold text-sm hover:bg-violet-500/15 hover:border-violet-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-        >
-          <PlusCircle className="w-4 h-4" />
-          Add PTs
-        </button>
-
         <button className="group flex items-center gap-2.5 px-6 py-3 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold text-sm hover:bg-amber-500/15 hover:border-amber-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
           <Download className="w-4 h-4" />
           My Orders
