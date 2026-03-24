@@ -334,7 +334,7 @@ export default function ProgramDetails() {
             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] space-y-2">
               <div className="flex items-center gap-1.5 text-slate-500">
                 <IndianRupee className="w-3.5 h-3.5" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider">Program Fee</span>
+                <span className="text-[10px] font-semibold uppercase tracking-wider">PT Scheme Name</span>
               </div>
               <p className="text-2xl font-bold text-white tabular-nums">
                 ₹{program.fees?.toLocaleString("en-IN")}
@@ -349,7 +349,7 @@ export default function ProgramDetails() {
               <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] space-y-2">
                 <div className="flex items-center gap-1.5 text-slate-500">
                   <Truck className="w-3.5 h-3.5" />
-                  <span className="text-[10px] font-semibold uppercase tracking-wider">Dispatch Date</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider">Final Report Release Date</span>
                 </div>
                 <p className="text-lg font-semibold text-white">
                   {new Date(program.dispatchDate).toLocaleDateString("en-IN", {
@@ -366,7 +366,7 @@ export default function ProgramDetails() {
               <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] space-y-2">
                 <div className="flex items-center gap-1.5 text-slate-500">
                   <CalendarCheck className="w-3.5 h-3.5" />
-                  <span className="text-[10px] font-semibold uppercase tracking-wider">Last Consent</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider">Registration Closing Date</span>
                 </div>
                 <p className="text-lg font-semibold text-white">
                   {new Date(program.lastDateOfConsent).toLocaleDateString("en-IN", {

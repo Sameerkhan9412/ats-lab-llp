@@ -1,8 +1,11 @@
+// components/SidebarServer.tsx
+
 import SidebarClient from "./SidebarClient";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/app/lib/auth";
 import { connectDB } from "@/app/lib/db";
 import Profile from "@/app/models/Profile";
+import User from "@/app/models/User";
 
 export default async function SidebarServer() {
   await connectDB();
@@ -12,8 +15,19 @@ export default async function SidebarServer() {
 
   let profileCompleted = false;
   let completionPercent = 0;
+  let userRole: "admin" | "user" | "lab_manager" = "user";
 
   if (payload) {
+    // ✅ Get role from token first (faster)
+    if (payload.role) {
+      userRole = payload.role;
+    } else {
+      // Fallback: fetch from database (for old tokens)
+      const user = await User.findById(payload.userId).select("role");
+      userRole = (user?.role as "admin" | "user" | "lab_manager") || "user";
+    }
+
+    // Fetch profile completion
     const profile = await Profile.findOne({ userId: payload.userId });
 
     const required = [
@@ -34,6 +48,7 @@ export default async function SidebarServer() {
     <SidebarClient
       profileCompleted={profileCompleted}
       completionPercent={completionPercent}
+      userRole={userRole}
     />
   );
 }

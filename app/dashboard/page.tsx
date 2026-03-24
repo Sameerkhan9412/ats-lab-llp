@@ -182,10 +182,10 @@ export default function DashboardHome() {
           <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
         </button>
 
-        <button className="group flex items-center gap-2.5 px-6 py-3 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold text-sm hover:bg-emerald-500/15 hover:border-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+        {/* <button className="group flex items-center gap-2.5 px-6 py-3 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold text-sm hover:bg-emerald-500/15 hover:border-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
           <Send className="w-4 h-4" />
           Online Submission
-        </button>
+        </button> */}
 
         <button
           onClick={handleAddPts}
@@ -197,7 +197,7 @@ export default function DashboardHome() {
 
         <button className="group flex items-center gap-2.5 px-6 py-3 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold text-sm hover:bg-amber-500/15 hover:border-amber-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
           <Download className="w-4 h-4" />
-          My Downloads
+          My Orders
         </button>
       </div>
 

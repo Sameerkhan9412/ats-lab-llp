@@ -213,7 +213,7 @@ export default function PTProgramsListing() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <input
               type="text"
-              placeholder="Search by program name or scheme code..."
+              placeholder="Search by PT Schema Name or PT Round No..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-[#060d19]/60 border border-white/[0.06] rounded-xl pl-11 pr-10 py-3 text-sm text-slate-300 focus:outline-none focus:border-[#00B4D8]/30 focus:ring-1 focus:ring-[#00B4D8]/20 transition-all placeholder:text-slate-600"
@@ -269,19 +269,19 @@ export default function PTProgramsListing() {
                   #
                 </th>
                 <th className="px-5 py-4 text-left text-[11px] font-semibold tracking-wider uppercase text-slate-500">
-                  Program Name
+                  PT Scheme Name
                 </th>
                 <th className="px-5 py-4 text-left text-[11px] font-semibold tracking-wider uppercase text-slate-500">
-                  Scheme Code
+                  PT Round No
                 </th>
                 <th className="px-5 py-4 text-left text-[11px] font-semibold tracking-wider uppercase text-slate-500">
-                  Dispatch Date
+                  Final Report Release Date
                 </th>
                 <th className="px-5 py-4 text-left text-[11px] font-semibold tracking-wider uppercase text-slate-500">
-                  Last Consent
+                  Registration Closing Date
                 </th>
                 <th className="px-5 py-4 text-left text-[11px] font-semibold tracking-wider uppercase text-slate-500">
-                  Fees
+                  Participation Fee (INR)
                 </th>
                 <th className="px-5 py-4 text-center text-[11px] font-semibold tracking-wider uppercase text-slate-500">
                   Actions

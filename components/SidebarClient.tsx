@@ -1,7 +1,9 @@
+// components/SidebarClient.tsx
+
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import {
@@ -9,31 +11,37 @@ import {
   UserCog,
   HelpCircle,
   AlertTriangle,
-  MapPin,
   ShoppingBag,
   CreditCard,
   ChevronRight,
   Lock,
-  Zap,
   LogOut,
   Settings,
   Bell,
   Shield,
+  FileText,
+  // Admin Icons
+  Users,
+  CalendarCheck,
+  LayoutDashboard,
+  BarChart3,
+  ClipboardList,
+  UserCheck,
 } from "lucide-react";
 import Image from "next/image";
 import logo from "@/app/assets/logo.jpg";
 
-
-const links = [
+// User navigation links
+const userLinks = [
   { name: "Home", href: "/dashboard", icon: Home },
   { name: "Update Profile", href: "/dashboard/profile", icon: UserCog },
   { name: "My Enquiry", href: "/dashboard/enquiry", icon: HelpCircle },
+  { name: "Download Forms", href: "/dashboard/forms", icon: FileText },
   {
     name: "Raise Complaints",
     href: "/dashboard/complaints",
     icon: AlertTriangle,
   },
-  // { name: "Add Locations", href: "/dashboard/locations", icon: MapPin },
   { name: "My Orders", href: "/dashboard/my-orders", icon: ShoppingBag },
   {
     name: "Payment History",
@@ -42,44 +50,204 @@ const links = [
   },
 ];
 
+// Admin-only navigation links
+const adminLinks = [
+  {
+    name: "Admin Dashboard",
+    href: "/dashboard/admin-dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    name: "Manage Users",
+    href: "/dashboard/users",
+    icon: Users,
+  },
+  {
+    name: "PT Bookings",
+    href: "/dashboard/bookings",
+    icon: CalendarCheck,
+  },
+  {
+    name: "PT Programs",
+    href: "/dashboard/programs",
+    icon: ClipboardList,
+  },
+  {
+    name: "Result Submission",
+    href: "/dashboard/result-submission",
+    icon: UserCheck,
+  },
+  {
+    name: "Analytics",
+    href: "/dashboard/analytics",
+    icon: BarChart3,
+  },
+];
+
+interface SidebarClientProps {
+  profileCompleted: boolean;
+  completionPercent: number;
+  userRole: "admin" | "user" | "lab_manager";
+}
+
 export default function SidebarClient({
   profileCompleted,
   completionPercent,
-}: {
-  profileCompleted: boolean;
-  completionPercent: number;
-}) {
+  userRole,
+}: SidebarClientProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+
+  const isAdmin = userRole === "admin";
+
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      toast.success("Logged out successfully");
+      router.push("/login");
+    } catch (error) {
+      toast.error("Failed to logout");
+    }
+  };
+
+  // Reusable NavLink component
+  const NavLink = ({
+    link,
+    disabled = false,
+    isAdminLink = false,
+  }: {
+    link: { name: string; href: string; icon: any };
+    disabled?: boolean;
+    isAdminLink?: boolean;
+  }) => {
+    const isActive =
+      pathname === link.href ||
+      (link.href !== "/dashboard" && pathname.startsWith(link.href));
+
+    const Icon = link.icon;
+
+    if (disabled) {
+      return (
+        <button
+          onClick={() =>
+            toast.error(
+              "Please complete your profile to access this module",
+              {
+                style: {
+                  background: "#0f172a",
+                  color: "#f87171",
+                  border: "1px solid rgba(248,113,113,0.2)",
+                },
+                icon: "🔒",
+              }
+            )
+          }
+          onMouseEnter={() => setHoveredLink(link.name)}
+          onMouseLeave={() => setHoveredLink(null)}
+          className="group flex items-center w-full gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 cursor-not-allowed transition-all duration-200 hover:bg-white/[0.02]"
+        >
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-white/[0.03]">
+            <Icon className="w-4 h-4" />
+            <Lock className="w-2.5 h-2.5 absolute -bottom-0.5 -right-0.5 text-slate-600" />
+          </div>
+          <span className="flex-1 text-left">{link.name}</span>
+        </button>
+      );
+    }
+
+    return (
+      <Link
+        href={link.href}
+        onMouseEnter={() => setHoveredLink(link.name)}
+        onMouseLeave={() => setHoveredLink(null)}
+        className={`group relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+          isActive ? "text-white" : "text-slate-400 hover:text-slate-200"
+        }`}
+      >
+        {/* Active background */}
+        {isActive && (
+          <>
+            <div
+              className={`absolute inset-0 rounded-xl border ${
+                isAdminLink
+                  ? "bg-gradient-to-r from-red-500/15 to-orange-500/10 border-red-500/20"
+                  : "bg-gradient-to-r from-[#00B4D8]/15 to-[#0A3D62]/10 border-[#00B4D8]/20"
+              }`}
+            />
+            <div
+              className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-r-full ${
+                isAdminLink
+                  ? "bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)]"
+                  : "bg-[#00B4D8] shadow-[0_0_12px_rgba(0,180,216,0.5)]"
+              }`}
+            />
+          </>
+        )}
+
+        {/* Hover background */}
+        {!isActive && hoveredLink === link.name && (
+          <div className="absolute inset-0 rounded-xl bg-white/[0.03]" />
+        )}
+
+        <div
+          className={`relative flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
+            isActive
+              ? isAdminLink
+                ? "bg-red-500/20 text-red-400 shadow-[0_0_20px_rgba(239,68,68,0.15)]"
+                : "bg-[#00B4D8]/20 text-[#00B4D8] shadow-[0_0_20px_rgba(0,180,216,0.15)]"
+              : "bg-white/[0.04] group-hover:bg-white/[0.06] text-slate-400 group-hover:text-slate-300"
+          }`}
+        >
+          <Icon className="w-4 h-4" />
+        </div>
+
+        <span className="relative flex-1">{link.name}</span>
+
+        {isActive && (
+          <ChevronRight
+            className={`relative w-3.5 h-3.5 ${
+              isAdminLink ? "text-red-500/60" : "text-[#00B4D8]/60"
+            }`}
+          />
+        )}
+      </Link>
+    );
+  };
 
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-[280px] z-50 flex flex-col bg-[#0a1628]/80 backdrop-blur-2xl border-r border-white/[0.06]">
       {/* Logo Section */}
       <div className="px-6 py-6">
         <div className="flex items-center gap-3">
-          {/* <div className="relative">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00B4D8] to-[#0A3D62] flex items-center justify-center shadow-lg shadow-[#00B4D8]/20">
-              <Zap className="w-5 h-5 text-white" />
-
-            </div> */}
-            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0a1628]" />
-          </div>
-          <Link href="/">
-            <h1 className="text-base font-bold tracking-tight bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent flex gap-2 items-center">
-              <Image src={logo} alt="ATS Logo" className="w-9 h-9" />
-              <div>
-              <span>
-                ATAS Laboratories LLP
-                </span>
+          <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0a1628]" />
+        </div>
+        <Link href="/">
+          <h1 className="text-base font-bold tracking-tight bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent flex gap-2 items-center">
+            <Image src={logo} alt="ATS Logo" className="w-9 h-9" />
+            <div>
+              <span>ATAS Laboratories LLP</span>
               <p className="text-[10px] text-slate-500 font-medium tracking-widest uppercase">
-              Dashboard
-            </p>
-              </div>
-            </h1>
-            </Link>
-          
+                Dashboard
+              </p>
+            </div>
+          </h1>
+        </Link>
+      </div>
+
+      {/* Admin Badge - Only show for admins */}
+      {isAdmin && (
+        <div className="mx-4 mb-4">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20">
+            <Shield className="w-4 h-4 text-red-400" />
+            <span className="text-xs font-semibold text-red-400">
+              Admin Access
+            </span>
+            <div className="ml-auto w-2 h-2 rounded-full bg-red-400 animate-pulse" />
           </div>
-        {/* </div> */}
+        </div>
+      )}
 
       {/* Profile Completion Warning */}
       {!profileCompleted && (
@@ -126,97 +294,53 @@ export default function SidebarClient({
         </div>
       )}
 
-      {/* Divider */}
-      <div className="mx-6 mb-2">
-        <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-slate-600">
-          Navigation
-        </p>
-      </div>
-
-      {/* Navigation Links */}
-      <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto scrollbar-none">
-        {links.map((l) => {
-          const isActive =
-            pathname === l.href ||
-            (l.href !== "/dashboard" && pathname.startsWith(l.href));
-
-          const disabled =
-            !profileCompleted && l.href !== "/dashboard/profile";
-
-          const Icon = l.icon;
-
-          return (
-            <div key={l.name} className="relative">
-              {disabled ? (
-                <button
-                  onClick={() =>
-                    toast.error(
-                      "Please complete your profile to access this module",
-                      {
-                        style: {
-                          background: "#0f172a",
-                          color: "#f87171",
-                          border: "1px solid rgba(248,113,113,0.2)",
-                        },
-                        icon: "🔒",
-                      }
-                    )
-                  }
-                  onMouseEnter={() => setHoveredLink(l.name)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                  className="group flex items-center w-full gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 cursor-not-allowed transition-all duration-200 hover:bg-white/[0.02]"
-                >
-                  <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-white/[0.03]">
-                    <Icon className="w-4 h-4" />
-                    <Lock className="w-2.5 h-2.5 absolute -bottom-0.5 -right-0.5 text-slate-600" />
-                  </div>
-                  <span className="flex-1 text-left">{l.name}</span>
-                </button>
-              ) : (
-                <Link
-                  href={l.href}
-                  onMouseEnter={() => setHoveredLink(l.name)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                  className={`group relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
-                    isActive
-                      ? "text-white"
-                      : "text-slate-400 hover:text-slate-200"
-                  }`}
-                >
-                  {/* Active background */}
-                  {isActive && (
-                    <>
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#00B4D8]/15 to-[#0A3D62]/10 border border-[#00B4D8]/20" />
-                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-r-full bg-[#00B4D8] shadow-[0_0_12px_rgba(0,180,216,0.5)]" />
-                    </>
-                  )}
-
-                  {/* Hover background */}
-                  {!isActive && hoveredLink === l.name && (
-                    <div className="absolute inset-0 rounded-xl bg-white/[0.03]" />
-                  )}
-
-                  <div
-                    className={`relative flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
-                      isActive
-                        ? "bg-[#00B4D8]/20 text-[#00B4D8] shadow-[0_0_20px_rgba(0,180,216,0.15)]"
-                        : "bg-white/[0.04] group-hover:bg-white/[0.06] text-slate-400 group-hover:text-slate-300"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </div>
-
-                  <span className="relative flex-1">{l.name}</span>
-
-                  {isActive && (
-                    <ChevronRight className="relative w-3.5 h-3.5 text-[#00B4D8]/60" />
-                  )}
-                </Link>
-              )}
+      {/* Scrollable Navigation Area */}
+      <div className="flex-1 overflow-y-auto scrollbar-none">
+        {/* ─── ADMIN SECTION (Only visible to admins) ─── */}
+        {isAdmin && (
+          <>
+            <div className="mx-6 mb-2">
+              <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-red-400/70">
+                Admin Panel
+              </p>
             </div>
-          );
-        })}
-      </nav>
+
+            <nav className="px-3 space-y-0.5 mb-4">
+              {adminLinks.map((link) => (
+                <div key={link.name} className="relative">
+                  <NavLink link={link} disabled={false} isAdminLink={true} />
+                </div>
+              ))}
+            </nav>
+
+            {/* Divider between admin and user sections */}
+            <div className="mx-4 mb-4">
+              <div className="h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+            </div>
+          </>
+        )}
+
+        {/* ─── USER NAVIGATION ─── */}
+        <div className="mx-6 mb-2">
+          <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-slate-600">
+            {isAdmin ? "User Features" : "Navigation"}
+          </p>
+        </div>
+
+        {!isAdmin && <nav className="px-3 space-y-0.5">
+          {userLinks.map((link) => {
+            const disabled =
+              !profileCompleted && link.href !== "/dashboard/profile";
+
+            return (
+              <div key={link.name} className="relative">
+                <NavLink link={link} disabled={disabled} isAdminLink={false} />
+              </div>
+            );
+          })}
+        </nav>
+}
+      </div>
 
       {/* Bottom Section */}
       <div className="p-3 space-y-0.5">
@@ -239,7 +363,10 @@ export default function SidebarClient({
           <span className="flex-1 text-left">Settings</span>
         </button>
 
-        <button className="group flex items-center w-full gap-3 px-3 py-2.5 rounded-xl text-sm text-red-400/70 hover:text-red-400 hover:bg-red-500/[0.05] transition-all duration-200">
+        <button
+          onClick={handleLogout}
+          className="group flex items-center w-full gap-3 px-3 py-2.5 rounded-xl text-sm text-red-400/70 hover:text-red-400 hover:bg-red-500/[0.05] transition-all duration-200"
+        >
           <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/[0.06] group-hover:bg-red-500/[0.1] transition-colors">
             <LogOut className="w-4 h-4" />
           </div>

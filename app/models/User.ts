@@ -1,3 +1,5 @@
+// app/models/User.ts
+
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
@@ -7,6 +9,13 @@ const UserSchema = new mongoose.Schema(
     password: String,
     signupFor: String,
 
+    // ✅ Add role field
+    role: {
+      type: String,
+      enum: ["admin", "user", "lab_manager"],
+      default: "user",
+    },
+
     isVerified: { type: Boolean, default: false },
     otp: String,
     otpExpiry: Date,
@@ -14,5 +23,4 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.User ||
-  mongoose.model("User", UserSchema);
+export default mongoose.models.User || mongoose.model("User", UserSchema);
