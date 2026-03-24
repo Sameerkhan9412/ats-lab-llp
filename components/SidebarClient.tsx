@@ -59,12 +59,12 @@ const adminLinks = [
   },
   {
     name: "Manage Users",
-    href: "/dashboard/users",
+    href: "/dashboard/admin/users",
     icon: Users,
   },
   {
     name: "PT Bookings",
-    href: "/dashboard/bookings",
+    href: "/dashboard/admin/bookings",
     icon: CalendarCheck,
   },
   {
@@ -79,16 +79,16 @@ const adminLinks = [
     href:"/dashboard/admin/enquiries",
     icon: ClipboardList,
   },
-  {
-    name: "Result Submission",
-    href: "/dashboard/result-submission",
-    icon: UserCheck,
-  },
-  {
-    name: "Analytics",
-    href: "/dashboard/analytics",
-    icon: BarChart3,
-  },
+  // {
+  //   name: "Result Submission",
+  //   href: "/dashboard/result-submission",
+  //   icon: UserCheck,
+  // },
+  // {
+  //   name: "Analytics",
+  //   href: "/dashboard/analytics",
+  //   icon: BarChart3,
+  // },
 ];
 
 interface SidebarClientProps {

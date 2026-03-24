@@ -55,9 +55,9 @@ export default function AdminDashboard() {
   // Navigate functions
   const handleManageUsers = () => router.push("/dashboard/admin/users");
   const handlePTBookings = () => router.push("/dashboard/admin/bookings");
-  const handlePTPrograms = () => router.push("/dashboard/admin/programs");
-  const handleAnalytics = () => router.push("/dashboard/admin/analytics");
-  const handleResultSubmission = () => router.push("/dashboard/admin/result-submission");
+  const handlePTPrograms = () => router.push("/dashboard/admin/pt-programs");
+  // const handleAnalytics = () => router.push("/dashboard/admin/analytics");
+  // const handleResultSubmission = () => router.push("/dashboard/admin/result-submission");
 
   return (
     <div
@@ -278,27 +278,27 @@ export default function AdminDashboard() {
                 onClick: handlePTBookings,
                 color: "emerald",
               },
-              {
-                icon: UserCheck,
-                label: "Review Submissions",
-                description: "28 awaiting review",
-                onClick: handleResultSubmission,
-                color: "amber",
-              },
-              {
-                icon: BarChart3,
-                label: "View Analytics",
-                description: "Performance metrics",
-                onClick: handleAnalytics,
-                color: "cyan",
-              },
-              {
-                icon: FileText,
-                label: "Generate Reports",
-                description: "Export system data",
-                onClick: () => {},
-                color: "red",
-              },
+              // {
+              //   icon: UserCheck,
+              //   label: "Review Submissions",
+              //   description: "28 awaiting review",
+              //   onClick: handleResultSubmission,
+              //   color: "amber",
+              // },
+              // {
+              //   icon: BarChart3,
+              //   label: "View Analytics",
+              //   description: "Performance metrics",
+              //   onClick: handleAnalytics,
+              //   color: "cyan",
+              // },
+              // {
+              //   icon: FileText,
+              //   label: "Generate Reports",
+              //   description: "Export system data",
+              //   onClick: () => {},
+              //   color: "red",
+              // },
             ].map((action) => (
               <button
                 key={action.label}
